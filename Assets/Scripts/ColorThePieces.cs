@@ -16,7 +16,7 @@ public class ColorThePieces : MonoBehaviour
     }
     IEnumerator color()
     {
-        yield return new WaitForSeconds(0.1f);
+        yield return new WaitForSeconds(0.01f);
         if (side == 'f')
         {
             transform.GetComponent<Renderer>().material.SetColor("_Color", colorFinder(GameObject.Find("GameController2").GetComponent<Game2>().orange[index / 3, index % 3]));
