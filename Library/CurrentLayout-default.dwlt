@@ -21,7 +21,7 @@ MonoBehaviour:
   m_ShowMode: 4
   m_Title: 
   m_RootView: {fileID: 2}
-  m_MinSize: {x: 950, y: 394}
+  m_MinSize: {x: 950, y: 544}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &2
 MonoBehaviour:
@@ -45,7 +45,7 @@ MonoBehaviour:
     y: 0
     width: 1920
     height: 997
-  m_MinSize: {x: 950, y: 394}
+  m_MinSize: {x: 950, y: 300}
   m_MaxSize: {x: 10000, y: 10000}
 --- !u!114 &3
 MonoBehaviour:
@@ -111,10 +111,10 @@ MonoBehaviour:
     y: 30
     width: 1920
     height: 947
-  m_MinSize: {x: 883, y: 344}
-  m_MaxSize: {x: 16008, y: 8044}
+  m_MinSize: {x: 883, y: 494}
+  m_MaxSize: {x: 16008, y: 14044}
   vertical: 0
-  controlID: 38530
+  controlID: 134
 --- !u!114 &6
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -136,10 +136,10 @@ MonoBehaviour:
     y: 0
     width: 1520
     height: 947
-  m_MinSize: {x: 606, y: 344}
-  m_MaxSize: {x: 12006, y: 8044}
+  m_MinSize: {x: 606, y: 494}
+  m_MaxSize: {x: 12006, y: 14044}
   vertical: 1
-  controlID: 38536
+  controlID: 98
 --- !u!114 &7
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -165,7 +165,7 @@ MonoBehaviour:
   m_MinSize: {x: 606, y: 222}
   m_MaxSize: {x: 12006, y: 4022}
   vertical: 0
-  controlID: 38537
+  controlID: 53
 --- !u!114 &8
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -263,14 +263,14 @@ MonoBehaviour:
     y: 675
     width: 1520
     height: 272
-  m_MinSize: {x: 102, y: 122}
-  m_MaxSize: {x: 4002, y: 4022}
-  m_ActualView: {fileID: 17}
+  m_MinSize: {x: 232, y: 272}
+  m_MaxSize: {x: 10002, y: 10022}
+  m_ActualView: {fileID: 16}
   m_Panes:
   - {fileID: 16}
   - {fileID: 17}
-  m_Selected: 1
-  m_LastSelected: 0
+  m_Selected: 0
+  m_LastSelected: 1
 --- !u!114 &12
 MonoBehaviour:
   m_ObjectHideFlags: 52
@@ -407,9 +407,9 @@ MonoBehaviour:
   m_SceneHierarchy:
     m_TreeViewState:
       scrollPos: {x: 0, y: 0}
-      m_SelectedIDs: 
+      m_SelectedIDs: 32290000
       m_LastClickedID: 0
-      m_ExpandedIDs: 80a1feff16b6feffcabefeff0e1dffff3e6cffffc66dffffc07dffff6ca5ffffa2faffff6efbffffcc340000aa350000de3500003e370000424b0100944b0100887301009c730100347501007c7901000c7c01005e7c0100dc93010074950100dadd0100
+      m_ExpandedIDs: 6efbffff
       m_RenameOverlay:
         m_UserAcceptedRename: 0
         m_Name: 
@@ -502,7 +502,7 @@ MonoBehaviour:
   m_Rotation:
     m_Target: {x: -0.067319095, y: -0.062230095, z: 0.004191931, w: -0.995796}
     speed: 2
-    m_Value: {x: -0.06731909, y: -0.06223009, z: 0.004191931, w: -0.995796}
+    m_Value: {x: -0.06731803, y: -0.062229108, z: 0.0041918643, w: -0.9957802}
   m_Size:
     m_Target: 91.28838
     speed: 2
@@ -571,20 +571,20 @@ MonoBehaviour:
     m_SkipHidden: 0
     m_SearchArea: 1
     m_Folders:
-    - Assets/Materials
+    - Assets/Scripts
   m_ViewMode: 1
   m_StartGridSize: 64
   m_LastFolders:
-  - Assets/Materials
+  - Assets/Scripts
   m_LastFoldersGridSize: -1
-  m_LastProjectPath: D:\Archive\Proje\Unity\Rubiks Cube Solver
+  m_LastProjectPath: D:\Archive\Proje\Github\Rubik-Cube-Solver
   m_LockTracker:
     m_IsLocked: 0
   m_FolderTreeState:
     scrollPos: {x: 0, y: 0}
-    m_SelectedIDs: 08300000
-    m_LastClickedID: 12296
-    m_ExpandedIDs: 00000000c02c00002c2f0000
+    m_SelectedIDs: 202f0000
+    m_LastClickedID: 12064
+    m_ExpandedIDs: 00000000c22c0000202f0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -612,7 +612,7 @@ MonoBehaviour:
     scrollPos: {x: 0, y: 0}
     m_SelectedIDs: 
     m_LastClickedID: 0
-    m_ExpandedIDs: 00000000c02c00002c2f0000
+    m_ExpandedIDs: 00000000c22c0000202f0000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
       m_Name: 
@@ -639,7 +639,7 @@ MonoBehaviour:
   m_ListAreaState:
     m_SelectedInstanceIDs: 
     m_LastClickedInstanceID: 0
-    m_HadKeyboardFocusLastEvent: 0
+    m_HadKeyboardFocusLastEvent: 1
     m_ExpandedInstanceIDs: c6230000f82d0000ee2c000000000000
     m_RenameOverlay:
       m_UserAcceptedRename: 0
