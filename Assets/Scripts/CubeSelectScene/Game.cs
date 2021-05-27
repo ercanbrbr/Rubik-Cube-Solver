@@ -25,22 +25,22 @@ public class Game : MonoBehaviour
         if (false == calculatePieces())
         {
             Debug.Log("Çözülemez Küp..: Her renkten 9 tane olmak zorunda.");
-            return false;
+            return true;
         }
         if (false == incorrectCorner())
         {
             Debug.Log("Çözülemez Küp..: Köşe parçalarının renkleri yanlış.");
-            return false;
+            return true;
         }
         if (false == cornerTwist())
         {
             Debug.Log("Çözülemez Küp..: Köşe parçalarının oryantasyonu yanlış.");
-            return false;
+            return true;
         }
         if (false == isEdgesCorrect())
         {
             Debug.Log("Çözülemez Küp..: Kenar parçalarının oryantasyonu yanlış.");
-            return false;
+            return true;
         }
         Debug.Log("Küp Doğrudur.");
         return true;

@@ -13,18 +13,7 @@ public class Rotations : MonoBehaviour
     IEnumerator rotate()
     {
         yield return new WaitForSeconds(5);
-        left();
-        yield return new WaitForSeconds(1);
-        left();
-        yield return new WaitForSeconds(1);
-        left();
-        yield return new WaitForSeconds(1);
-        left(false);
-        yield return new WaitForSeconds(1);
-        up(false);
-        yield return new WaitForSeconds(1);
         right(false);
-        yield return new WaitForSeconds(1);
     }
     void Update()
     {
@@ -186,6 +175,7 @@ public class Rotations : MonoBehaviour
             }
         }
     }
+    //Sağ Tarafı Çevirme. true = saat yönü, false = saat yönü tersi.
     void right(bool a = true) {
         foreach (GameObject cube in GameObject.FindGameObjectsWithTag("Pieces"))
         {
@@ -195,7 +185,9 @@ public class Rotations : MonoBehaviour
                 change(cube, 'r', a);
             }
         }
-    }//Sağ Tarafı Çevirme. true = saat yönü, false = saat yönü tersi.
+        GameObject.Find("GameController2").GetComponent<Game2>().right(a);
+    }
+    //Sol Tarafı Çevirme. true = saat yönü, false = saat yönü tersi.
     void left(bool a = true) {
         foreach (GameObject cube in GameObject.FindGameObjectsWithTag("Pieces"))
         {
@@ -205,7 +197,9 @@ public class Rotations : MonoBehaviour
                 change(cube, 'l', a);
             }
         }
-    }//Sol Tarafı Çevirme. true = saat yönü, false = saat yönü tersi.
+        GameObject.Find("GameController2").GetComponent<Game2>().left(a);
+    }
+    //Yukarı Tarafı Çevirme. true = saat yönü, false = saat yönü tersi.
     void up(bool a = true)
     {
         foreach (GameObject cube in GameObject.FindGameObjectsWithTag("Pieces"))
@@ -216,7 +210,9 @@ public class Rotations : MonoBehaviour
                 change(cube, 'u', a);
             }
         }
-    }//Yukarı Tarafı Çevirme. true = saat yönü, false = saat yönü tersi.
+        GameObject.Find("GameController2").GetComponent<Game2>().up(a);
+    }
+    //Aşağı Tarafı Çevirme. true = saat yönü, false = saat yönü tersi.
     void down(bool a = true)
     {
         foreach (GameObject cube in GameObject.FindGameObjectsWithTag("Pieces"))
@@ -227,7 +223,8 @@ public class Rotations : MonoBehaviour
                 change(cube, 'd', a);
             }
         }
-    }//Aşağı Tarafı Çevirme. true = saat yönü, false = saat yönü tersi.
+    }
+    //Ön Tarafı Çevirme. true = saat yönü, false = saat yönü tersi.
     void front(bool a = true)
     {
         foreach (GameObject cube in GameObject.FindGameObjectsWithTag("Pieces"))
@@ -238,7 +235,9 @@ public class Rotations : MonoBehaviour
                 change(cube, 'f', a);
             }
         }
-    }//Ön Tarafı Çevirme. true = saat yönü, false = saat yönü tersi.
+        GameObject.Find("GameController2").GetComponent<Game2>().front(a);
+    }
+    //Back Tarafı Çevirme. true = saat yönü, false = saat yönü tersi.
     void back(bool a = true)
     {
         foreach (GameObject cube in GameObject.FindGameObjectsWithTag("Pieces"))
@@ -249,6 +248,7 @@ public class Rotations : MonoBehaviour
                 change(cube, 'b', a);
             }
         }
-    }//Back Tarafı Çevirme. true = saat yönü, false = saat yönü tersi.
+        GameObject.Find("GameController2").GetComponent<Game2>().back(a);
+    }
 
 }

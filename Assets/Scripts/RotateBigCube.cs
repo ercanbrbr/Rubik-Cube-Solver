@@ -11,12 +11,7 @@ public class RotateBigCube : MonoBehaviour
     Vector3 mouseDelta;
     public GameObject target;
     float speed = 200f;
-    void Start()
-    {
-        
-    }
 
-    // Update is called once per frame
     void Update()
     {
         Swipe();
@@ -55,32 +50,39 @@ public class RotateBigCube : MonoBehaviour
             {
                 target.transform.Rotate(0, 90, 0, Space.World);
                 UpdatePieces(new string[] {"f", "l", "b", "r" });
+                GameObject.Find("GameController2").GetComponent<Game2>().LeftSwipe();
             }
             else if (RightSwipe(currentSwipe))
             {
                 target.transform.Rotate(0, -90, 0, Space.World);
                 UpdatePieces(new string[] {"f", "r", "b", "l" });
+                GameObject.Find("GameController2").GetComponent<Game2>().RightSwipe();
             }
             else if (UpLeftSwipe(currentSwipe))
             {
                 target.transform.Rotate(90, 0, 0, Space.World);
                 UpdatePieces(new string[] { "r", "u", "l", "d" });
+                GameObject.Find("GameController2").GetComponent<Game2>().UpLeftSwipe();
             }
             else if (UpRightSwipe(currentSwipe))
             {
                 target.transform.Rotate(0, 0, -90, Space.World);
                 UpdatePieces(new string[] { "f", "u", "b", "d" });
+                GameObject.Find("GameController2").GetComponent<Game2>().UpRightSwipe();
             }
             else if (DownLeftSwipe(currentSwipe))
             {
                 target.transform.Rotate(0, 0, 90, Space.World);
-                UpdatePieces(new string[] { "r", "d", "l", "u" });
+                UpdatePieces(new string[] { "f", "d", "b", "u" });
+                GameObject.Find("GameController2").GetComponent<Game2>().DownLeftSwipe();
             }
             else if (DownRightSwipe(currentSwipe))
             {
                 target.transform.Rotate(-90, 0, 0, Space.World);
-                UpdatePieces(new string[] { "f", "d", "b", "u" });
+                UpdatePieces(new string[] { "r", "d", "l", "u" });
+                GameObject.Find("GameController2").GetComponent<Game2>().DownRightSwipe();
             }
+            GameObject.Find("CubeMap").GetComponent<Map>().mapUpdate();
         }
     }
     bool LeftSwipe(Vector2 swipe)
@@ -107,6 +109,7 @@ public class RotateBigCube : MonoBehaviour
     {
         return currentSwipe.y < 0 && currentSwipe.x > 0f;
     }
+    //Her parça, hangi tarafta olduğu bilgisini tutuyor. Bu fonksiyon rotasyon yaptıktan sonra, bu bilgileri güncelliyor.
     void UpdatePieces(string [] deneme)
     {
         foreach (GameObject cube in GameObject.FindGameObjectsWithTag("Pieces"))
