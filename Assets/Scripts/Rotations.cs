@@ -8,12 +8,12 @@ public class Rotations : MonoBehaviour
 
     private void Start()
     {
-        StartCoroutine(rotate());
+        //StartCoroutine(rotate());
     }  
     IEnumerator rotate()
     {
         yield return new WaitForSeconds(5);
-        right(false);
+        back();
     }
     void Update()
     {
@@ -223,6 +223,7 @@ public class Rotations : MonoBehaviour
                 change(cube, 'd', a);
             }
         }
+        GameObject.Find("GameController2").GetComponent<Game2>().down(a);
     }
     //Ön Tarafı Çevirme. true = saat yönü, false = saat yönü tersi.
     void front(bool a = true)

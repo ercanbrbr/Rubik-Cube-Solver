@@ -20,7 +20,6 @@ public class Game2 : MonoBehaviour
 
     void Start()
     {
-        
         for (int i = 0; i < 3; i++)
         {
             for (int j = 0; j < 3; j++)
@@ -113,12 +112,11 @@ public class Game2 : MonoBehaviour
     }
     public void right(bool a)
     {
+        char temp1 = Side(Front)[0, 2];
+        char temp2 = Side(Front)[1, 2];
+        char temp3 = Side(Front)[2, 2];
         if (a)
         {
-            char temp1 = Side(Front)[0, 2];
-            char temp2 = Side(Front)[1, 2];
-            char temp3 = Side(Front)[2, 2];
-
             Side(Front)[0, 2] = Side(Down)[0, 2];
             Side(Front)[1, 2] = Side(Down)[1, 2];
             Side(Front)[2, 2] = Side(Down)[2, 2];
@@ -137,10 +135,6 @@ public class Game2 : MonoBehaviour
         }
         else
         {
-            char temp1 = Side(Front)[0, 2];
-            char temp2 = Side(Front)[1, 2];
-            char temp3 = Side(Front)[2, 2];
-
             Side(Front)[0, 2] = Side(Up)[0, 2];
             Side(Front)[1, 2] = Side(Up)[1, 2];
             Side(Front)[2, 2] = Side(Up)[2, 2];
@@ -162,23 +156,224 @@ public class Game2 : MonoBehaviour
     }
     public void left(bool a)
     {
+        char temp1 = Side(Front)[0, 0];
+        char temp2 = Side(Front)[1, 0];
+        char temp3 = Side(Front)[2, 0];
+        if (a)
+        {
+            Side(Front)[0, 0] = Side(Up)[0, 0];
+            Side(Front)[1, 0] = Side(Up)[1, 0];
+            Side(Front)[2, 0] = Side(Up)[2, 0];
 
+            Side(Up)[0, 0] = Side(Back)[2, 2];
+            Side(Up)[1, 0] = Side(Back)[1, 2];
+            Side(Up)[2, 0] = Side(Back)[0, 2];
+
+            Side(Back)[2, 2] = Side(Down)[0,0];
+            Side(Back)[1, 2] = Side(Down)[1,0];
+            Side(Back)[0, 2] = Side(Down)[2,0];
+
+            Side(Down)[0, 0] = temp1;
+            Side(Down)[1, 0] = temp2;
+            Side(Down)[2, 0] = temp3;
+        }
+        else
+        {
+            Side(Front)[0, 0] = Side(Down)[0, 0];
+            Side(Front)[1, 0] = Side(Down)[1, 0];
+            Side(Front)[2, 0] = Side(Down)[2, 0];
+
+            Side(Down)[0, 0] = Side(Back)[2, 2];
+            Side(Down)[1, 0] = Side(Back)[1, 2];
+            Side(Down)[2, 0] = Side(Back)[0, 2];
+
+            Side(Back)[2, 2] = Side(Up)[0, 0];
+            Side(Back)[1, 2] = Side(Up)[1, 0];
+            Side(Back)[0, 2] = Side(Up)[2, 0];
+
+            Side(Up)[0, 0] = temp1;
+            Side(Up)[1, 0] = temp2;
+            Side(Up)[2, 0] = temp3;
+        }
+        oneSideRotate(Side(Left), a);
+        GameObject.Find("CubeMap").GetComponent<Map>().mapUpdate();
     }
     public void up(bool a)
     {
+        char temp1= Side(Front)[0, 0];
+        char temp2= Side(Front)[0, 1];
+        char temp3= Side(Front)[0, 2];
+        if (a)
+        {
+            Side(Front)[0, 0] = Side(Right)[0, 0];
+            Side(Front)[0, 1] = Side(Right)[0, 1];
+            Side(Front)[0, 2] = Side(Right)[0, 2];
 
+            Side(Right)[0, 0] = Side(Back)[0, 0];
+            Side(Right)[0, 1] = Side(Back)[0, 1];
+            Side(Right)[0, 2] = Side(Back)[0, 2];
+
+            Side(Back)[0, 0] = Side(Left)[0, 0];
+            Side(Back)[0, 1] = Side(Left)[0, 1];
+            Side(Back)[0, 2] = Side(Left)[0, 2];
+
+            Side(Left)[0, 0] = temp1;
+            Side(Left)[0, 1] = temp2;
+            Side(Left)[0, 2] = temp3;
+        }
+        else
+        {
+            Side(Front)[0, 0] = Side(Left)[0, 0];
+            Side(Front)[0, 1] = Side(Left)[0, 1];
+            Side(Front)[0, 2] = Side(Left)[0, 2];
+
+            Side(Left)[0, 0] = Side(Back)[0, 0];
+            Side(Left)[0, 1] = Side(Back)[0, 1];
+            Side(Left)[0, 2] = Side(Back)[0, 2];
+
+            Side(Back)[0, 0] = Side(Right)[0, 0];
+            Side(Back)[0, 1] = Side(Right)[0, 1];
+            Side(Back)[0, 2] = Side(Right)[0, 2];
+
+            Side(Right)[0, 0] = temp1;
+            Side(Right)[0, 1] = temp2;
+            Side(Right)[0, 2] = temp3;
+        }
+        oneSideRotate(Side(Up), a);
+        GameObject.Find("CubeMap").GetComponent<Map>().mapUpdate();
     }
     public void down(bool a)
     {
+        char temp1 = Side(Front)[2, 0];
+        char temp2 = Side(Front)[2, 1];
+        char temp3 = Side(Front)[2, 2];
+        if (a)
+        {
+            Side(Front)[2, 0] = Side(Left)[2, 0];
+            Side(Front)[2, 1] = Side(Left)[2, 1];
+            Side(Front)[2, 2] = Side(Left)[2, 2];
 
+            Side(Left)[2, 0] = Side(Back)[2, 0];
+            Side(Left)[2, 1] = Side(Back)[2, 1];
+            Side(Left)[2, 2] = Side(Back)[2, 2];
+
+            Side(Back)[2, 0] = Side(Right)[2, 0];
+            Side(Back)[2, 1] = Side(Right)[2, 1];
+            Side(Back)[2, 2] = Side(Right)[2, 2];
+
+            Side(Right)[2, 0] = temp1;
+            Side(Right)[2, 1] = temp2;
+            Side(Right)[2, 2] = temp3;
+        }
+        else
+        {
+            Side(Front)[2, 0] = Side(Right)[2, 0];
+            Side(Front)[2, 1] = Side(Right)[2, 1];
+            Side(Front)[2, 2] = Side(Right)[2, 2];
+
+            Side(Right)[2, 0] = Side(Back)[2, 0];
+            Side(Right)[2, 1] = Side(Back)[2, 1];
+            Side(Right)[2, 2] = Side(Back)[2, 2];
+
+            Side(Back)[2, 0] = Side(Left)[2, 0];
+            Side(Back)[2, 1] = Side(Left)[2, 1];
+            Side(Back)[2, 2] = Side(Left)[2, 2];
+
+            Side(Left)[2, 0] = temp1;
+            Side(Left)[2, 1] = temp2;
+            Side(Left)[2, 2] = temp3;
+        }
+        oneSideRotate(Side(Down), a);
+        GameObject.Find("CubeMap").GetComponent<Map>().mapUpdate();
     }
     public void front(bool a)
     {
+        char temp1 = Side(Up)[2, 0];
+        char temp2 = Side(Up)[2, 1];
+        char temp3 = Side(Up)[2, 2];
+        if (a)
+        {
+            Side(Up)[2, 0] = Side(Left)[0, 2];
+            Side(Up)[2, 1] = Side(Left)[1, 2];
+            Side(Up)[2, 2] = Side(Left)[2, 2];
 
+            Side(Left)[0, 2] = Side(Down)[0, 0];
+            Side(Left)[1, 2] = Side(Down)[0, 1];
+            Side(Left)[2, 2] = Side(Down)[0, 2];
+
+            Side(Down)[0, 0] = Side(Right)[2, 0];
+            Side(Down)[0, 1] = Side(Right)[1, 0];
+            Side(Down)[0, 2] = Side(Right)[0, 0];
+
+            Side(Right)[2, 0] = temp3;
+            Side(Right)[1, 0] = temp2;
+            Side(Right)[0, 0] = temp1;
+        }
+        else
+        {
+            Side(Up)[2, 0] = Side(Right)[0, 0];
+            Side(Up)[2, 1] = Side(Right)[1, 0];
+            Side(Up)[2, 2] = Side(Right)[2, 0];
+
+            Side(Right)[0, 0] = Side(Down)[0, 2];
+            Side(Right)[1, 0] = Side(Down)[0, 1];
+            Side(Right)[2, 0] = Side(Down)[0, 0];
+
+            Side(Down)[0, 2] = Side(Left)[2, 2];
+            Side(Down)[0, 1] = Side(Left)[1, 2];
+            Side(Down)[0, 0] = Side(Left)[0, 2];
+
+            Side(Left)[2, 2] = temp1;
+            Side(Left)[1, 2] = temp2;
+            Side(Left)[0, 2] = temp3;
+
+        }
+        oneSideRotate(Side(Front), a);
+        GameObject.Find("CubeMap").GetComponent<Map>().mapUpdate();
     }
     public void back(bool a)
     {
+        char temp1 = Side(Up)[0, 0];
+        char temp2 = Side(Up)[0, 1];
+        char temp3 = Side(Up)[0, 2];
+        if (a)
+        {
+            Side(Up)[0, 0] = Side(Right)[0, 2];
+            Side(Up)[0, 1] = Side(Right)[1, 2];
+            Side(Up)[0, 2] = Side(Right)[2, 2];
 
+            Side(Right)[0, 2] = Side(Down)[2,2];
+            Side(Right)[1, 2] = Side(Down)[2,1];
+            Side(Right)[2, 2] = Side(Down)[2,0];
+
+            Side(Down)[2, 2] = Side(Left)[2,0];
+            Side(Down)[2, 1] = Side(Left)[1,0];
+            Side(Down)[2, 0] = Side(Left)[0,0];
+
+            Side(Left)[2, 0] = temp1;
+            Side(Left)[1, 0] = temp2;
+            Side(Left)[0, 0] = temp3;
+        }
+        else
+        {
+            Side(Up)[0, 0] = Side(Left)[2,0];
+            Side(Up)[0, 1] = Side(Left)[1,0];
+            Side(Up)[0, 2] = Side(Left)[0,0];
+
+            Side(Left)[2, 0] = Side(Down)[2,2];
+            Side(Left)[1, 0] = Side(Down)[2,1];
+            Side(Left)[0, 0] = Side(Down)[2,0];
+
+            Side(Down)[2, 2] = Side(Right)[0,2];
+            Side(Down)[2, 1] = Side(Right)[1,2];
+            Side(Down)[2, 0] = Side(Right)[2,2];
+
+            Side(Right)[0, 2] = temp1;
+            Side(Right)[1, 2] = temp2;
+            Side(Right)[2, 2] = temp3;
+        }
+        oneSideRotate(Side(Back), a);
+        GameObject.Find("CubeMap").GetComponent<Map>().mapUpdate();
     }
     void oneSideRotate(char[,] side,bool a)
     {
