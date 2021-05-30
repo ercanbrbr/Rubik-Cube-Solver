@@ -80,10 +80,13 @@ public class Buttons : MonoBehaviour
     public void scramble()
     {
         System.Random rnd = new System.Random();
-        for (int i = 0; i < 50; i++)
+        for (int i = 0; i < 20; i++)
         {
             int a = rnd.Next(0, 6);
             move(a);
+            GameObject.Find("GameController2").GetComponent<Game2>().moveCount = -1;
+            GameObject.Find("GameController2").GetComponent<Game2>().text();
+            Destroy(GameObject.Find("Scramble"));
         }
         void move(int a)
         {

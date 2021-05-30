@@ -1,6 +1,7 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using TMPro;
 
 public class Game2 : MonoBehaviour
 {
@@ -17,10 +18,40 @@ public class Game2 : MonoBehaviour
     public char Down = 'W';
     public char Left = 'G';
     public char Right = 'B';
+    public int moveCount = 0;
 
-    [SerializeField]
-    public GameObject g;
 
+    bool isCubeSolved()
+    {
+        if (!check(white))
+            return false;
+        if (!check(yellow))
+            return false;
+        if (!check(orange))
+            return false;
+        if (!check(red))
+            return false;
+        if (!check(blue))
+            return false;
+        if (!check(green))
+            return false;
+        GameObject.Find("Play").SetActive(false);
+        return true;
+    }
+    bool check(char[,] list)
+    {
+        foreach (var item in list)
+        {
+            if (item != list[1,1])
+                return false;
+        }
+        return true;
+    }
+    public void text()
+    {
+        moveCount++;
+        GameObject.Find("Move").transform.GetComponent<TMPro.TextMeshProUGUI>().text = "Move..:"+ moveCount;
+    }
     void Start()
     {
         try
@@ -38,6 +69,7 @@ public class Game2 : MonoBehaviour
                 }
             }
             Destroy(GameObject.Find("GameController"));
+            Destroy(GameObject.Find("Play"));
         }
         catch (System.Exception)
         {
@@ -122,6 +154,7 @@ public class Game2 : MonoBehaviour
     }
     public void right(bool a)
     {
+        text();
         char temp1 = Side(Front)[0, 2];
         char temp2 = Side(Front)[1, 2];
         char temp3 = Side(Front)[2, 2];
@@ -163,9 +196,11 @@ public class Game2 : MonoBehaviour
         }
         oneSideRotate(Side(Right), a);
         GameObject.Find("CubeMap").GetComponent<Map>().mapUpdate();
+        isCubeSolved();
     }
     public void left(bool a)
     {
+        text();
         char temp1 = Side(Front)[0, 0];
         char temp2 = Side(Front)[1, 0];
         char temp3 = Side(Front)[2, 0];
@@ -207,9 +242,11 @@ public class Game2 : MonoBehaviour
         }
         oneSideRotate(Side(Left), a);
         GameObject.Find("CubeMap").GetComponent<Map>().mapUpdate();
+        isCubeSolved();
     }
     public void up(bool a)
     {
+        text();
         char temp1= Side(Front)[0, 0];
         char temp2= Side(Front)[0, 1];
         char temp3= Side(Front)[0, 2];
@@ -251,9 +288,11 @@ public class Game2 : MonoBehaviour
         }
         oneSideRotate(Side(Up), a);
         GameObject.Find("CubeMap").GetComponent<Map>().mapUpdate();
+        isCubeSolved();
     }
     public void down(bool a)
     {
+        text();
         char temp1 = Side(Front)[2, 0];
         char temp2 = Side(Front)[2, 1];
         char temp3 = Side(Front)[2, 2];
@@ -295,9 +334,11 @@ public class Game2 : MonoBehaviour
         }
         oneSideRotate(Side(Down), a);
         GameObject.Find("CubeMap").GetComponent<Map>().mapUpdate();
+        isCubeSolved();
     }
     public void front(bool a)
     {
+        text();
         char temp1 = Side(Up)[2, 0];
         char temp2 = Side(Up)[2, 1];
         char temp3 = Side(Up)[2, 2];
@@ -340,9 +381,11 @@ public class Game2 : MonoBehaviour
         }
         oneSideRotate(Side(Front), a);
         GameObject.Find("CubeMap").GetComponent<Map>().mapUpdate();
+        isCubeSolved();
     }
     public void back(bool a)
     {
+        text();
         char temp1 = Side(Up)[0, 0];
         char temp2 = Side(Up)[0, 1];
         char temp3 = Side(Up)[0, 2];
@@ -384,6 +427,7 @@ public class Game2 : MonoBehaviour
         }
         oneSideRotate(Side(Back), a);
         GameObject.Find("CubeMap").GetComponent<Map>().mapUpdate();
+        isCubeSolved();
     }
     public void oneSideRotate(char[,] side,bool a)
     {
