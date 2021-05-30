@@ -43,6 +43,7 @@ public class RotateBigCube : MonoBehaviour
         }
         if (Input.GetMouseButtonUp(1))
         {
+            GameObject temp = GameObject.Find("GameController2");
             secondPressPos = new Vector2(Input.mousePosition.x, Input.mousePosition.y);
             currentSwipe = new Vector2(secondPressPos.x - firstPressPos.x, secondPressPos.y - firstPressPos.y);
             currentSwipe.Normalize();
@@ -50,37 +51,76 @@ public class RotateBigCube : MonoBehaviour
             {
                 target.transform.Rotate(0, 90, 0, Space.World);
                 UpdatePieces(new string[] {"f", "l", "b", "r" });
-                GameObject.Find("GameController2").GetComponent<Game2>().LeftSwipe();
+                temp.GetComponent<Game2>().LeftSwipe();
+                temp.GetComponent<Game2>().oneSideRotate(temp.GetComponent<Game2>().Side(temp.GetComponent<Game2>().Up),true);
+                temp.GetComponent<Game2>().oneSideRotate(temp.GetComponent<Game2>().Side(temp.GetComponent<Game2>().Down),false);
             }
             else if (RightSwipe(currentSwipe))
             {
                 target.transform.Rotate(0, -90, 0, Space.World);
                 UpdatePieces(new string[] {"f", "r", "b", "l" });
-                GameObject.Find("GameController2").GetComponent<Game2>().RightSwipe();
+                temp.GetComponent<Game2>().RightSwipe();
+                temp.GetComponent<Game2>().oneSideRotate(temp.GetComponent<Game2>().Side(temp.GetComponent<Game2>().Up), false);
+                temp.GetComponent<Game2>().oneSideRotate(temp.GetComponent<Game2>().Side(temp.GetComponent<Game2>().Down), true);
             }
             else if (UpLeftSwipe(currentSwipe))
             {
                 target.transform.Rotate(90, 0, 0, Space.World);
                 UpdatePieces(new string[] { "r", "u", "l", "d" });
-                GameObject.Find("GameController2").GetComponent<Game2>().UpLeftSwipe();
+                temp.GetComponent<Game2>().UpLeftSwipe();
+
+                temp.GetComponent<Game2>().oneSideRotate(temp.GetComponent<Game2>().Side(temp.GetComponent<Game2>().Front), false);
+                temp.GetComponent<Game2>().oneSideRotate(temp.GetComponent<Game2>().Side(temp.GetComponent<Game2>().Back), true);
+
+                temp.GetComponent<Game2>().oneSideRotate(temp.GetComponent<Game2>().Side(temp.GetComponent<Game2>().Up), false);
+                temp.GetComponent<Game2>().oneSideRotate(temp.GetComponent<Game2>().Side(temp.GetComponent<Game2>().Down), false);
+
+                temp.GetComponent<Game2>().oneSideRotate(temp.GetComponent<Game2>().Side(temp.GetComponent<Game2>().Left), false);
+                temp.GetComponent<Game2>().oneSideRotate(temp.GetComponent<Game2>().Side(temp.GetComponent<Game2>().Right), false);
             }
             else if (UpRightSwipe(currentSwipe))
             {
                 target.transform.Rotate(0, 0, -90, Space.World);
                 UpdatePieces(new string[] { "f", "u", "b", "d" });
-                GameObject.Find("GameController2").GetComponent<Game2>().UpRightSwipe();
+                temp.GetComponent<Game2>().UpRightSwipe();
+
+                temp.GetComponent<Game2>().oneSideRotate(temp.GetComponent<Game2>().Side(temp.GetComponent<Game2>().Left), false);
+                temp.GetComponent<Game2>().oneSideRotate(temp.GetComponent<Game2>().Side(temp.GetComponent<Game2>().Right), true);
+
+                temp.GetComponent<Game2>().oneSideRotate(temp.GetComponent<Game2>().Side(temp.GetComponent<Game2>().Back), true);
+                temp.GetComponent<Game2>().oneSideRotate(temp.GetComponent<Game2>().Side(temp.GetComponent<Game2>().Back), true);
+                temp.GetComponent<Game2>().oneSideRotate(temp.GetComponent<Game2>().Side(temp.GetComponent<Game2>().Down), true);
+                temp.GetComponent<Game2>().oneSideRotate(temp.GetComponent<Game2>().Side(temp.GetComponent<Game2>().Down), true);
+
             }
             else if (DownLeftSwipe(currentSwipe))
             {
                 target.transform.Rotate(0, 0, 90, Space.World);
                 UpdatePieces(new string[] { "f", "d", "b", "u" });
-                GameObject.Find("GameController2").GetComponent<Game2>().DownLeftSwipe();
+                temp.GetComponent<Game2>().DownLeftSwipe();
+
+                temp.GetComponent<Game2>().oneSideRotate(temp.GetComponent<Game2>().Side(temp.GetComponent<Game2>().Left), true);
+                temp.GetComponent<Game2>().oneSideRotate(temp.GetComponent<Game2>().Side(temp.GetComponent<Game2>().Right), false);
+
+                temp.GetComponent<Game2>().oneSideRotate(temp.GetComponent<Game2>().Side(temp.GetComponent<Game2>().Back), true);
+                temp.GetComponent<Game2>().oneSideRotate(temp.GetComponent<Game2>().Side(temp.GetComponent<Game2>().Back), true);
+                temp.GetComponent<Game2>().oneSideRotate(temp.GetComponent<Game2>().Side(temp.GetComponent<Game2>().Up), true);
+                temp.GetComponent<Game2>().oneSideRotate(temp.GetComponent<Game2>().Side(temp.GetComponent<Game2>().Up), true);
             }
             else if (DownRightSwipe(currentSwipe))
             {
                 target.transform.Rotate(-90, 0, 0, Space.World);
                 UpdatePieces(new string[] { "r", "d", "l", "u" });
-                GameObject.Find("GameController2").GetComponent<Game2>().DownRightSwipe();
+                temp.GetComponent<Game2>().DownRightSwipe();
+
+                temp.GetComponent<Game2>().oneSideRotate(temp.GetComponent<Game2>().Side(temp.GetComponent<Game2>().Front), true);
+                temp.GetComponent<Game2>().oneSideRotate(temp.GetComponent<Game2>().Side(temp.GetComponent<Game2>().Back), false);
+
+                temp.GetComponent<Game2>().oneSideRotate(temp.GetComponent<Game2>().Side(temp.GetComponent<Game2>().Up), true);
+                temp.GetComponent<Game2>().oneSideRotate(temp.GetComponent<Game2>().Side(temp.GetComponent<Game2>().Down), true);
+
+                temp.GetComponent<Game2>().oneSideRotate(temp.GetComponent<Game2>().Side(temp.GetComponent<Game2>().Left), true);
+                temp.GetComponent<Game2>().oneSideRotate(temp.GetComponent<Game2>().Side(temp.GetComponent<Game2>().Right), true);
             }
             GameObject.Find("CubeMap").GetComponent<Map>().mapUpdate();
         }

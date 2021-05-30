@@ -18,21 +18,31 @@ public class Game2 : MonoBehaviour
     public char Left = 'G';
     public char Right = 'B';
 
+    [SerializeField]
+    public GameObject g;
+
     void Start()
     {
-        for (int i = 0; i < 3; i++)
+        try
         {
-            for (int j = 0; j < 3; j++)
+            for (int i = 0; i < 3; i++)
             {
-                white[i, j] = GameObject.Find("GameController").GetComponent<Game>().white[i, j];
-                red[i, j] = GameObject.Find("GameController").GetComponent<Game>().red[i, j];
-                yellow[i, j] = GameObject.Find("GameController").GetComponent<Game>().yellow[i, j];
-                green[i, j] = GameObject.Find("GameController").GetComponent<Game>().green[i, j];
-                orange[i, j] = GameObject.Find("GameController").GetComponent<Game>().orange[i, j];
-                blue[i, j] = GameObject.Find("GameController").GetComponent<Game>().blue[i, j];
+                for (int j = 0; j < 3; j++)
+                {
+                    white[i, j] = GameObject.Find("GameController").GetComponent<Game>().white[i, j];
+                    red[i, j] = GameObject.Find("GameController").GetComponent<Game>().red[i, j];
+                    yellow[i, j] = GameObject.Find("GameController").GetComponent<Game>().yellow[i, j];
+                    green[i, j] = GameObject.Find("GameController").GetComponent<Game>().green[i, j];
+                    orange[i, j] = GameObject.Find("GameController").GetComponent<Game>().orange[i, j];
+                    blue[i, j] = GameObject.Find("GameController").GetComponent<Game>().blue[i, j];
+                }
             }
+            Destroy(GameObject.Find("GameController"));
         }
-        Destroy(GameObject.Find("GameController"));
+        catch (System.Exception)
+        {
+
+        }
         GameObject.Find("CubeMap").GetComponent<Map>().mapUpdate();
     }
     public void LeftSwipe()
@@ -293,9 +303,9 @@ public class Game2 : MonoBehaviour
         char temp3 = Side(Up)[2, 2];
         if (a)
         {
-            Side(Up)[2, 0] = Side(Left)[0, 2];
+            Side(Up)[2, 2] = Side(Left)[0, 2];
             Side(Up)[2, 1] = Side(Left)[1, 2];
-            Side(Up)[2, 2] = Side(Left)[2, 2];
+            Side(Up)[2, 0] = Side(Left)[2, 2];
 
             Side(Left)[0, 2] = Side(Down)[0, 0];
             Side(Left)[1, 2] = Side(Down)[0, 1];
@@ -375,7 +385,7 @@ public class Game2 : MonoBehaviour
         oneSideRotate(Side(Back), a);
         GameObject.Find("CubeMap").GetComponent<Map>().mapUpdate();
     }
-    void oneSideRotate(char[,] side,bool a)
+    public void oneSideRotate(char[,] side,bool a)
     {
         if (a)
         {
