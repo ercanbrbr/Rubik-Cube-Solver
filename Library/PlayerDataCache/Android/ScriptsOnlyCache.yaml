@@ -117,8 +117,6 @@ ScriptsOnlyBuild:
       Script: {instanceID: 0}
     - Class: 81
       Script: {instanceID: 0}
-    - Class: 89
-      Script: {instanceID: 0}
     - Class: 104
       Script: {instanceID: 0}
     - Class: 108
@@ -738,4 +736,4 @@ ScriptsOnlyBuild:
   - Assets/Scenes/MainMenu.unity
   - Assets/Scenes/MainScene.unity
   - Assets/Scenes/CubeSelect.unity
-  playerPath: "C:/Users/ercan/Desktop/k\xFCpapk/Cube.apk"
+  playerPath: "C:/Users/ercan/Desktop/k\xFCp/Cube.apk"

@@ -22,7 +22,7 @@ public class Game : MonoBehaviour
     //Sıra sıra kontrolleri gerçekleştiriyor.
     public bool isCubeCorrect()
     {
-        if (false == calculatePieces())
+        /*if (false == calculatePieces())
         {
             Debug.Log("Çözülemez Küp..: Her renkten 9 tane olmak zorunda.");
             return false;
@@ -42,7 +42,7 @@ public class Game : MonoBehaviour
             Debug.Log("Çözülemez Küp..: Kenar parçalarının oryantasyonu yanlış.");
             return false;
         }
-        Debug.Log("Küp Doğrudur.");
+        Debug.Log("Küp Doğrudur.");*/
         return true;
     }
 

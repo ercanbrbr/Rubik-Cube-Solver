@@ -80,7 +80,7 @@ public class Buttons : MonoBehaviour
     public void scramble()
     {
         System.Random rnd = new System.Random();
-        for (int i = 0; i < 20; i++)
+        for (int i = 0; i < 25; i++)
         {
             int a = rnd.Next(0, 6);
             move(a);
@@ -115,5 +115,10 @@ public class Buttons : MonoBehaviour
                 GameObject.Find("Cube").GetComponent<Rotations>().back();
             }
         }
+    }
+    public void solve()
+    {
+        GameObject.Find("Cube").GetComponent<Solve>().whiteCross();
+        Destroy(GameObject.Find("Solve"));
     }
 }

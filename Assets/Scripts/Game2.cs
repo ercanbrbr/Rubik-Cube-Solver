@@ -19,6 +19,7 @@ public class Game2 : MonoBehaviour
     public char Left = 'G';
     public char Right = 'B';
     public int moveCount = 0;
+    public string moveList = "";
 
 
     bool isCubeSolved()
@@ -35,10 +36,16 @@ public class Game2 : MonoBehaviour
             return false;
         if (!check(green))
             return false;
-        GameObject.Find("Play").SetActive(false);
+        try
+        {
+            GameObject.Find("Play").SetActive(false);
+        }
+        catch (System.Exception)
+        {
+        }
         return true;
     }
-    bool check(char[,] list)
+    public bool check(char[,] list)
     {
         foreach (var item in list)
         {
@@ -51,6 +58,7 @@ public class Game2 : MonoBehaviour
     {
         moveCount++;
         GameObject.Find("Move").transform.GetComponent<TMPro.TextMeshProUGUI>().text = "Move..:"+ moveCount;
+        GameObject.Find("Moves").transform.GetComponent<TMPro.TextMeshProUGUI>().text = moveList;
     }
     void Start()
     {
@@ -70,10 +78,11 @@ public class Game2 : MonoBehaviour
             }
             Destroy(GameObject.Find("GameController"));
             Destroy(GameObject.Find("Play"));
+            Destroy(GameObject.Find("Scramble"));
         }
         catch (System.Exception)
         {
-
+            Destroy(GameObject.Find("Solve"));
         }
         GameObject.Find("CubeMap").GetComponent<Map>().mapUpdate();
     }

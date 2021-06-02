@@ -34,27 +34,22 @@ public class Map : MonoBehaviour
         }
         else if (transform.GetChild(j).name == "Front")
         {
-            //a = GameObject.Find("GameController2").GetComponent<Game2>().orange[i / 3, i % 3];
             a = temp.GetComponent<Game2>().Side(temp.GetComponent<Game2>().Front)[i / 3, i % 3];
         }
         else if (transform.GetChild(j).name == "Down")
         {
-            //a = GameObject.Find("GameController2").GetComponent<Game2>().white[i / 3, i % 3];
             a = temp.GetComponent<Game2>().Side(temp.GetComponent<Game2>().Down)[i / 3, i % 3];
         }
         else if (transform.GetChild(j).name == "Right")
         {
-            //a = GameObject.Find("GameController2").GetComponent<Game2>().blue[i / 3, i % 3];
             a = temp.GetComponent<Game2>().Side(temp.GetComponent<Game2>().Right)[i / 3, i % 3];
         }
         else if (transform.GetChild(j).name == "Left")
         {
-            //a = GameObject.Find("GameController2").GetComponent<Game2>().green[i / 3, i % 3];
             a = temp.GetComponent<Game2>().Side(temp.GetComponent<Game2>().Left)[i / 3, i % 3];
         }
         else
         {
-            //a = GameObject.Find("GameController2").GetComponent<Game2>().red[i / 3, i % 3];
             a = temp.GetComponent<Game2>().Side(temp.GetComponent<Game2>().Back)[i / 3, i % 3];
         }
         if (a == 'W')
