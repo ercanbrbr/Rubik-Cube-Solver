@@ -10,7 +10,7 @@ public class RotateBigCube : MonoBehaviour
     Vector3 previousMousePosition;
     Vector3 mouseDelta;
     public GameObject target;
-    float speed = 200f;
+    float speed = 20000f;
 
     void Update()
     {

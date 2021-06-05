@@ -30,7 +30,94 @@ public class Solve : MonoBehaviour
     }
     void secondLayer()
     {
-        yellowLayer();
+        //İkinci Katman Yapılmadığı Sürece Devam Ediyor.
+        while (!(control(new int[] { 3, 5 }, cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Front), cube.GetComponent<Game2>().Front) &&
+            control(new int[] { 3, 5 }, cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Back), cube.GetComponent<Game2>().Back) &&
+            control(new int[] { 3, 5 }, cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Left), cube.GetComponent<Game2>().Left) &&
+            control(new int[] { 3, 5 }, cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Right), cube.GetComponent<Game2>().Right)) && check == true)
+        {
+            //Eğer önde kalan yüzün ikinci katmanı tamamlanmışsa, sol katmana geçiyor.
+            if (control(new int[] { 3, 5 }, cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Front), cube.GetComponent<Game2>().Front) && cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Left)[1, 2] == cube.GetComponent<Game2>().Left && cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Right)[1, 0] == cube.GetComponent<Game2>().Right)
+            {
+                StartCoroutine(rswipe(3));
+            }
+            //TTL yada TTR uygulanabilecek parçalar varsa.
+            else if (cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Left)[0, 1] == cube.GetComponent<Game2>().Front || cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Front)[0, 1] == cube.GetComponent<Game2>().Front ||
+                cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Right)[0, 1] == cube.GetComponent<Game2>().Front || cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Back)[0, 1] == cube.GetComponent<Game2>().Front)
+            {
+                //Eğer bu parça front yüze bakıyorsa.
+                if (cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Front)[0, 1] == cube.GetComponent<Game2>().Front && cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Up)[2, 1] != cube.GetComponent<Game2>().Up)
+                {
+                    //Yukarıdaki parça sola gidecekse.
+                    if (cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Up)[2, 1] == cube.GetComponent<Game2>().Left)
+                        topToLeft();
+                    //Yukarıdaki parça sağa gidecekse.
+                    else
+                    {
+                        topToRight();
+                    }
+                }
+                else if (cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Front)[0, 1] == cube.GetComponent<Game2>().Front && cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Up)[2, 1] == cube.GetComponent<Game2>().Up)
+                {
+                    if (cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Left)[0, 1] == cube.GetComponent<Game2>().Front ||
+                    cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Right)[0, 1] == cube.GetComponent<Game2>().Front ||
+                    cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Back)[0, 1] == cube.GetComponent<Game2>().Front)
+                    {
+                        cube.GetComponent<Game2>().moveList += " U ";
+                        GameObject.Find("Cube").GetComponent<Rotations>().up();
+                    }
+                    else
+                    {
+                        StartCoroutine(rswipe(3));
+                    }
+                }
+                //Front yüze bakmıyorsa. Fronta gelene kadar çeviriyoruz.
+                else
+                {
+                    cube.GetComponent<Game2>().moveList += " U ";
+                    GameObject.Find("Cube").GetComponent<Rotations>().up();
+                }
+            }
+            //Eğer ön yüzün sol tarafında kullanmamız geren bir parça varsa. ToptoLeft algoritması ile içinde sarı renk olan bir parça ile yerini değiştiriyor.
+            else if (cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Front)[1, 0] != cube.GetComponent<Game2>().Up && cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Left)[1, 2] != cube.GetComponent<Game2>().Up)
+            {
+                while (cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Front)[0, 1] != cube.GetComponent<Game2>().Up && cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Up)[2, 1] != cube.GetComponent<Game2>().Up)
+                {
+                    cube.GetComponent<Game2>().moveList += " U ";
+                    GameObject.Find("Cube").GetComponent<Rotations>().up();
+                }
+                topToLeft();
+            }
+            //Eğer ön yüzün sağ tarafında kullanmamız geren bir parça varsa. ToptoRight algoritması ile içinde sarı renk olan bir parça ile yerini değiştiriyor.
+            else if (cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Front)[1, 2] != cube.GetComponent<Game2>().Up && cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Right)[1, 0] != cube.GetComponent<Game2>().Up)
+            {
+                while (cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Front)[0, 1] != cube.GetComponent<Game2>().Up && cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Up)[2, 1] != cube.GetComponent<Game2>().Up)
+                {
+                    cube.GetComponent<Game2>().moveList += " U ";
+                    GameObject.Find("Cube").GetComponent<Rotations>().up();
+                }
+                topToRight();
+            }
+            //Eğer front yüzde uygulanacak toptoleft yada toptoright yoksa. Küpü çevirip başka yüzde deniyor.
+            else if (cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Up)[0, 1] == cube.GetComponent<Game2>().Front || cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Up)[1, 0] == cube.GetComponent<Game2>().Front ||
+                cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Up)[2, 1] == cube.GetComponent<Game2>().Front || cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Up)[1, 2] == cube.GetComponent<Game2>().Front)
+            {
+                StartCoroutine(rswipe(3));
+            }
+            else
+            {
+                print("Girdi");
+                return;
+            }
+        }
+
+        if (control(new int[] { 3, 5 }, cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Front), cube.GetComponent<Game2>().Front) &&
+            control(new int[] { 3, 5 }, cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Back), cube.GetComponent<Game2>().Back) &&
+            control(new int[] { 3, 5 }, cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Left), cube.GetComponent<Game2>().Left) &&
+            control(new int[] { 3, 5 }, cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Right), cube.GetComponent<Game2>().Right))
+        {
+            yellowLayer();
+        }
     }
     void yellowLayer()
     {
@@ -71,7 +158,6 @@ public class Solve : MonoBehaviour
             //Fish Corrent
             else if (control(new int[] { 1, 3, 4, 5, 6, 7 }, cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Up), cube.GetComponent<Game2>().Up))
             {
-                print(cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Front)[0, 2]+" dene ");
                 if (cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Front)[0, 2] == cube.GetComponent<Game2>().Up)
                     rightSune();
                 else
@@ -177,10 +263,8 @@ public class Solve : MonoBehaviour
             cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Left)[0, 0] == cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Left)[0, 1] && cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Left)[0, 1] == cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Left)[0, 2] &&
             cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Right)[0, 0] == cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Right)[0, 1] && cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Right)[0, 1] == cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Right)[0, 2])
             {
-                print("all pieces");
                 cube.GetComponent<Game2>().moveList += " U ";
                 GameObject.Find("Cube").GetComponent<Rotations>().up();
-
             }
             else if (cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Front)[0, 0] == cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Front)[0, 1] && cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Front)[0, 1] == cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Front)[0, 2] ||
             cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Back)[0, 0] == cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Back)[0, 1] && cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Back)[0, 1] == cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Back)[0, 2] ||
@@ -190,6 +274,18 @@ public class Solve : MonoBehaviour
                 if (control(new int[] { 0, 2 }, cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Back), cube.GetComponent<Game2>().Back))
                 {
                     PLL();
+                }
+                else if (control(new int[] { 0, 2 }, cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Left), cube.GetComponent<Game2>().Left))
+                {
+                    StartCoroutine(lswipe(6));
+                }
+                else if (control(new int[] { 0, 2 }, cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Right), cube.GetComponent<Game2>().Right))
+                {
+                    StartCoroutine(rswipe(6));
+                }
+                else if (control(new int[] { 0, 2 }, cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Front), cube.GetComponent<Game2>().Front))
+                {
+                    StartCoroutine(rswipe(6));
                 }
                 else
                 {
@@ -203,7 +299,6 @@ public class Solve : MonoBehaviour
                 cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Left)[0, 0] == cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Left)[0, 2] &&
                 cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Right)[0, 0] == cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Right)[0, 2])
             {
-                print("all edges");
                 cube.GetComponent<Game2>().moveList += " U ";
                 GameObject.Find("Cube").GetComponent<Rotations>().up();
             }
@@ -212,10 +307,21 @@ public class Solve : MonoBehaviour
                 cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Left)[0, 0] == cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Left)[0, 2] ||
                 cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Right)[0, 0] == cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Right)[0, 2])
             {
-                print("one edges");
                 if (control(new int[] { 0, 2 }, cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Back), cube.GetComponent<Game2>().Back))
                 {
                     PLL();
+                }
+                else if (control(new int[] { 0, 2 }, cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Left), cube.GetComponent<Game2>().Left))
+                {
+                    StartCoroutine(lswipe(6));
+                }
+                else if (control(new int[] { 0, 2 }, cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Right), cube.GetComponent<Game2>().Right))
+                {
+                    StartCoroutine(rswipe(6));
+                }
+                else if (control(new int[] { 0, 2 }, cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Front), cube.GetComponent<Game2>().Front))
+                {
+                    StartCoroutine(rswipe(6));
                 }
                 else
                 {
@@ -227,8 +333,11 @@ public class Solve : MonoBehaviour
             {
                 PLL();
             }
-        } 
-        thirdlayerPart2();
+        }
+        if (control(new int[] { 0, 2 }, cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Front), cube.GetComponent<Game2>().Front) && control(new int[] { 0, 2 }, cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Back), cube.GetComponent<Game2>().Back))
+        {
+            thirdlayerPart2();
+        }
     }
     void thirdlayerPart2()
     {
@@ -360,12 +469,36 @@ public class Solve : MonoBehaviour
         GameObject.Find("Cube").GetComponent<Rotations>().right();
         GameObject.Find("Cube").GetComponent<Rotations>().right();
     }
+    void topToLeft()
+    {
+        cube.GetComponent<Game2>().moveList += " U'  L'  U  L  F'  L  F  L'  ";
+        GameObject.Find("Cube").GetComponent<Rotations>().up(false);
+        GameObject.Find("Cube").GetComponent<Rotations>().left(false);
+        GameObject.Find("Cube").GetComponent<Rotations>().up();
+        GameObject.Find("Cube").GetComponent<Rotations>().left();
+        GameObject.Find("Cube").GetComponent<Rotations>().front(false);
+        GameObject.Find("Cube").GetComponent<Rotations>().left();
+        GameObject.Find("Cube").GetComponent<Rotations>().front();
+        GameObject.Find("Cube").GetComponent<Rotations>().left(false);
+    }
+    void topToRight()
+    {
+        cube.GetComponent<Game2>().moveList += " U  R  U'  R'  F  R'  F'  R ";
+        GameObject.Find("Cube").GetComponent<Rotations>().up();
+        GameObject.Find("Cube").GetComponent<Rotations>().right();
+        GameObject.Find("Cube").GetComponent<Rotations>().up(false);
+        GameObject.Find("Cube").GetComponent<Rotations>().right(false);
+        GameObject.Find("Cube").GetComponent<Rotations>().front();
+        GameObject.Find("Cube").GetComponent<Rotations>().right(false);
+        GameObject.Find("Cube").GetComponent<Rotations>().front(false);
+        GameObject.Find("Cube").GetComponent<Rotations>().right();
+    }
     IEnumerator lSune()
     {
         check = false;
         cube.GetComponent<Game2>().moveList += " RS ";
         GameObject.Find("Cube").GetComponent<RotateBigCube>().doRightSwipe();
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         leftSune();
         check = true;
         yellowLayer();
@@ -375,7 +508,7 @@ public class Solve : MonoBehaviour
         check = false;
         cube.GetComponent<Game2>().moveList += " RS ";
         GameObject.Find("Cube").GetComponent<RotateBigCube>().doRightSwipe();
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         check = true;
         if (a == 1)
             whiteCross();
@@ -385,15 +518,17 @@ public class Solve : MonoBehaviour
             secondLayer();
         else if (a == 4)
             yellowLayer();
-        else
+        else if (a == 5)
             thirdlayerPart2();
+        else
+            thirdLayer();
     }
     IEnumerator lswipe(int a)
     {
         check = false;
         cube.GetComponent<Game2>().moveList += " LS ";
         GameObject.Find("Cube").GetComponent<RotateBigCube>().doLeftSwipe();
-        yield return new WaitForSeconds(1);
+        yield return new WaitForSeconds(0.5f);
         check = true;
         if (a == 1)
             whiteCross();
@@ -403,6 +538,8 @@ public class Solve : MonoBehaviour
             secondLayer();
         else if (a == 4)
             yellowLayer();
+        else if (a == 5)
+            thirdlayerPart2();
         else
             thirdLayer();
     }
