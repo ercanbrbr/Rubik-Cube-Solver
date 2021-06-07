@@ -82,7 +82,7 @@ public class Game2 : MonoBehaviour
         }
         catch (System.Exception)
         {
-            Destroy(GameObject.Find("Solve"));
+            //Destroy(GameObject.Find("Solve"));
         }
         GameObject.Find("CubeMap").GetComponent<Map>().mapUpdate();
     }

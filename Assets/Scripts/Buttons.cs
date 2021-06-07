@@ -86,7 +86,8 @@ public class Buttons : MonoBehaviour
             move(a);
             GameObject.Find("GameController2").GetComponent<Game2>().moveCount = -1;
             GameObject.Find("GameController2").GetComponent<Game2>().text();
-            Destroy(GameObject.Find("Scramble"));
+            GameObject.Find("GameController2").GetComponent<Game2>().moveList = "";
+            //Destroy(GameObject.Find("Scramble"));
         }
         void move(int a)
         {
@@ -119,6 +120,6 @@ public class Buttons : MonoBehaviour
     public void solve()
     {
         GameObject.Find("Cube").GetComponent<Solve>().whiteCross();
-        Destroy(GameObject.Find("Solve"));
+        //Destroy(GameObject.Find("Solve"));
     }
 }

@@ -14,11 +14,238 @@ public class Solve : MonoBehaviour
     }
     public void whiteCross() 
     {
-        /*while (check(Side(Down))!=true)
+        while(!control(new int[] { 1, 3,4,5,7 }, cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Down), cube.GetComponent<Game2>().Down))
         {
-            //çözdür
-        }*/
-        firstLayer();
+            if (cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Up)[0, 1] == cube.GetComponent<Game2>().Down || 
+                cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Up)[1, 0] == cube.GetComponent<Game2>().Down || 
+                cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Up)[1, 2] == cube.GetComponent<Game2>().Down || 
+                cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Up)[2, 1] == cube.GetComponent<Game2>().Down)
+            {
+                if (cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Up)[0, 1] == cube.GetComponent<Game2>().Down)
+                {
+                    if (cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Back)[0, 1] == cube.GetComponent<Game2>().Back)
+                    {
+                        cube.GetComponent<Game2>().moveList += " B ";
+                        GameObject.Find("Cube").GetComponent<Rotations>().back();
+                        cube.GetComponent<Game2>().moveList += " B ";
+                        GameObject.Find("Cube").GetComponent<Rotations>().back();
+                    }
+                }
+                if (cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Up)[1, 0] == cube.GetComponent<Game2>().Down)
+                {
+                    if (cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Left)[0, 1] == cube.GetComponent<Game2>().Left)
+                    {
+                        cube.GetComponent<Game2>().moveList += " L ";
+                        GameObject.Find("Cube").GetComponent<Rotations>().left();
+                        cube.GetComponent<Game2>().moveList += " L ";
+                        GameObject.Find("Cube").GetComponent<Rotations>().left();
+                    }
+                }
+                if (cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Up)[1, 2] == cube.GetComponent<Game2>().Down)
+                {
+                    if (cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Right)[0, 1] == cube.GetComponent<Game2>().Right)
+                    {
+                        cube.GetComponent<Game2>().moveList += " R ";
+                        GameObject.Find("Cube").GetComponent<Rotations>().right();
+                        cube.GetComponent<Game2>().moveList += " R ";
+                        GameObject.Find("Cube").GetComponent<Rotations>().right();
+                    }
+                }
+                if (cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Up)[2, 1] == cube.GetComponent<Game2>().Down)
+                {
+                    if (cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Front)[0, 1] == cube.GetComponent<Game2>().Front)
+                    {
+                        cube.GetComponent<Game2>().moveList += " F ";
+                        GameObject.Find("Cube").GetComponent<Rotations>().front();
+                        cube.GetComponent<Game2>().moveList += " F ";
+                        GameObject.Find("Cube").GetComponent<Rotations>().front();
+                    }
+                }
+                cube.GetComponent<Game2>().moveList += " U ";
+                GameObject.Find("Cube").GetComponent<Rotations>().up();
+            }
+            else if (cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Front)[0, 1] == cube.GetComponent<Game2>().Down)
+            {
+                cube.GetComponent<Game2>().moveList += " F ";
+                GameObject.Find("Cube").GetComponent<Rotations>().front();
+                cube.GetComponent<Game2>().moveList += " R ";
+                GameObject.Find("Cube").GetComponent<Rotations>().right();
+                cube.GetComponent<Game2>().moveList += " U' ";
+                GameObject.Find("Cube").GetComponent<Rotations>().up(false);
+                cube.GetComponent<Game2>().moveList += " R' ";
+                GameObject.Find("Cube").GetComponent<Rotations>().right(false);
+                cube.GetComponent<Game2>().moveList += " F' ";
+                GameObject.Find("Cube").GetComponent<Rotations>().front(false);
+            }
+            else if (cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Left)[0, 1] == cube.GetComponent<Game2>().Down)
+            {
+                cube.GetComponent<Game2>().moveList += " L ";
+                GameObject.Find("Cube").GetComponent<Rotations>().left();
+                cube.GetComponent<Game2>().moveList += " F ";
+                GameObject.Find("Cube").GetComponent<Rotations>().front();
+                cube.GetComponent<Game2>().moveList += " U' ";
+                GameObject.Find("Cube").GetComponent<Rotations>().up(false);
+                cube.GetComponent<Game2>().moveList += " F' ";
+                GameObject.Find("Cube").GetComponent<Rotations>().front(false);
+                cube.GetComponent<Game2>().moveList += " L' ";
+                GameObject.Find("Cube").GetComponent<Rotations>().left(false);
+            }
+            else if (cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Right)[0, 1] == cube.GetComponent<Game2>().Down)
+            {
+                cube.GetComponent<Game2>().moveList += " R' ";
+                GameObject.Find("Cube").GetComponent<Rotations>().right(false);
+                cube.GetComponent<Game2>().moveList += " F' ";
+                GameObject.Find("Cube").GetComponent<Rotations>().front(false);
+                cube.GetComponent<Game2>().moveList += " U ";
+                GameObject.Find("Cube").GetComponent<Rotations>().up();
+                cube.GetComponent<Game2>().moveList += " F ";
+                GameObject.Find("Cube").GetComponent<Rotations>().front();
+                cube.GetComponent<Game2>().moveList += " R ";
+                GameObject.Find("Cube").GetComponent<Rotations>().right();
+            }
+            else if (cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Back)[0, 1] == cube.GetComponent<Game2>().Down)
+            {
+                cube.GetComponent<Game2>().moveList += " B' ";
+                GameObject.Find("Cube").GetComponent<Rotations>().back(false);
+                cube.GetComponent<Game2>().moveList += " R' ";
+                GameObject.Find("Cube").GetComponent<Rotations>().right(false);
+                cube.GetComponent<Game2>().moveList += " U ";
+                GameObject.Find("Cube").GetComponent<Rotations>().up();
+                cube.GetComponent<Game2>().moveList += " R ";
+                GameObject.Find("Cube").GetComponent<Rotations>().right();
+                cube.GetComponent<Game2>().moveList += " B ";
+                GameObject.Find("Cube").GetComponent<Rotations>().back();
+            }
+            else if (cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Front)[1, 0] == cube.GetComponent<Game2>().Down)
+            {
+                cube.GetComponent<Game2>().moveList += " L' ";
+                GameObject.Find("Cube").GetComponent<Rotations>().left(false);
+                cube.GetComponent<Game2>().moveList += " U ";
+                GameObject.Find("Cube").GetComponent<Rotations>().up();
+                cube.GetComponent<Game2>().moveList += " L ";
+                GameObject.Find("Cube").GetComponent<Rotations>().left();
+            }
+            else if (cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Front)[1, 2] == cube.GetComponent<Game2>().Down)
+            {
+                cube.GetComponent<Game2>().moveList += " R ";
+                GameObject.Find("Cube").GetComponent<Rotations>().right();
+                cube.GetComponent<Game2>().moveList += " U ";
+                GameObject.Find("Cube").GetComponent<Rotations>().up();
+                cube.GetComponent<Game2>().moveList += " R' ";
+                GameObject.Find("Cube").GetComponent<Rotations>().right(false);
+            }
+            else if (cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Left)[1, 0] == cube.GetComponent<Game2>().Down)
+            {
+                cube.GetComponent<Game2>().moveList += " B' ";
+                GameObject.Find("Cube").GetComponent<Rotations>().back(false);
+                cube.GetComponent<Game2>().moveList += " U ";
+                GameObject.Find("Cube").GetComponent<Rotations>().up();
+                cube.GetComponent<Game2>().moveList += " B ";
+                GameObject.Find("Cube").GetComponent<Rotations>().back();
+            }
+            else if (cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Left)[1, 2] == cube.GetComponent<Game2>().Down)
+            {
+                cube.GetComponent<Game2>().moveList += " F ";
+                GameObject.Find("Cube").GetComponent<Rotations>().front();
+                cube.GetComponent<Game2>().moveList += " U ";
+                GameObject.Find("Cube").GetComponent<Rotations>().up();
+                cube.GetComponent<Game2>().moveList += " F' ";
+                GameObject.Find("Cube").GetComponent<Rotations>().front(false);
+            }
+            else if (cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Right)[1, 0] == cube.GetComponent<Game2>().Down)
+            {
+                cube.GetComponent<Game2>().moveList += " F' ";
+                GameObject.Find("Cube").GetComponent<Rotations>().front(false);
+                cube.GetComponent<Game2>().moveList += " U ";
+                GameObject.Find("Cube").GetComponent<Rotations>().up();
+                cube.GetComponent<Game2>().moveList += " F ";
+                GameObject.Find("Cube").GetComponent<Rotations>().front();
+            }
+            else if (cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Right)[1, 2] == cube.GetComponent<Game2>().Down)
+            {
+                cube.GetComponent<Game2>().moveList += " B ";
+                GameObject.Find("Cube").GetComponent<Rotations>().back();
+                cube.GetComponent<Game2>().moveList += " U ";
+                GameObject.Find("Cube").GetComponent<Rotations>().up();
+                cube.GetComponent<Game2>().moveList += " B' ";
+                GameObject.Find("Cube").GetComponent<Rotations>().back(false);
+            }
+            else if (cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Back)[1, 0] == cube.GetComponent<Game2>().Down)
+            {
+                cube.GetComponent<Game2>().moveList += " R' ";
+                GameObject.Find("Cube").GetComponent<Rotations>().right(false);
+                cube.GetComponent<Game2>().moveList += " U ";
+                GameObject.Find("Cube").GetComponent<Rotations>().up();
+                cube.GetComponent<Game2>().moveList += " R ";
+                GameObject.Find("Cube").GetComponent<Rotations>().right();
+            }
+            else if (cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Back)[1, 2] == cube.GetComponent<Game2>().Down)
+            {
+                cube.GetComponent<Game2>().moveList += " L ";
+                GameObject.Find("Cube").GetComponent<Rotations>().left();
+                cube.GetComponent<Game2>().moveList += " U ";
+                GameObject.Find("Cube").GetComponent<Rotations>().up();
+                cube.GetComponent<Game2>().moveList += " L' ";
+                GameObject.Find("Cube").GetComponent<Rotations>().left(false);
+            }
+            else if (cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Front)[2, 1] == cube.GetComponent<Game2>().Down)
+            {
+                cube.GetComponent<Game2>().moveList += " F ";
+                GameObject.Find("Cube").GetComponent<Rotations>().front();
+            }
+            else if (cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Left)[2, 1] == cube.GetComponent<Game2>().Down)
+            {
+                cube.GetComponent<Game2>().moveList += " L ";
+                GameObject.Find("Cube").GetComponent<Rotations>().left();
+            }
+            else if (cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Right)[2, 1] == cube.GetComponent<Game2>().Down)
+            {
+                cube.GetComponent<Game2>().moveList += " R ";
+                GameObject.Find("Cube").GetComponent<Rotations>().right();
+            }
+            else if (cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Back)[2, 1] == cube.GetComponent<Game2>().Down)
+            {
+                cube.GetComponent<Game2>().moveList += " B ";
+                GameObject.Find("Cube").GetComponent<Rotations>().back();
+            }
+        }
+        if (cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Front)[2,1] != cube.GetComponent<Game2>().Front)
+        {
+            cube.GetComponent<Game2>().moveList += " F ";
+            GameObject.Find("Cube").GetComponent<Rotations>().front();
+            cube.GetComponent<Game2>().moveList += " F ";
+            GameObject.Find("Cube").GetComponent<Rotations>().front();
+        }
+        if (cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Back)[2,1] != cube.GetComponent<Game2>().Back)
+        {
+            cube.GetComponent<Game2>().moveList += " B ";
+            GameObject.Find("Cube").GetComponent<Rotations>().back();
+            cube.GetComponent<Game2>().moveList += " B ";
+            GameObject.Find("Cube").GetComponent<Rotations>().back();
+        }
+        if (cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Left)[2,1] != cube.GetComponent<Game2>().Left)
+        {
+            cube.GetComponent<Game2>().moveList += " L ";
+            GameObject.Find("Cube").GetComponent<Rotations>().left();
+            cube.GetComponent<Game2>().moveList += " L ";
+            GameObject.Find("Cube").GetComponent<Rotations>().left();
+        }
+        if (cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Right)[2,1] != cube.GetComponent<Game2>().Right)
+        {
+            cube.GetComponent<Game2>().moveList += " R ";
+            GameObject.Find("Cube").GetComponent<Rotations>().right();
+            cube.GetComponent<Game2>().moveList += " R ";
+            GameObject.Find("Cube").GetComponent<Rotations>().right();
+        }
+        if(control(new int[] { 1, 3, 4, 5, 7 }, cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Down), cube.GetComponent<Game2>().Down))
+        {
+            //firstLayer();
+        }
+        else
+        {
+            print("yakaladım aq");
+            whiteCross();
+        }
     }
     void firstLayer()
     {

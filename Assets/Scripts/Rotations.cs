@@ -260,5 +260,4 @@ public class Rotations : MonoBehaviour
         }
         GameObject.Find("GameController2").GetComponent<Game2>().back(a);
     }
-
 }

@@ -29,7 +29,6 @@ public class Map : MonoBehaviour
         char a;
         if (transform.GetChild(j).name == "Up")
         {
-            //a = GameObject.Find("GameController2").GetComponent<Game2>().yellow[i / 3, i % 3];
             a = temp.GetComponent<Game2>().Side(temp.GetComponent<Game2>().Up)[i / 3, i % 3];
         }
         else if (transform.GetChild(j).name == "Front")
