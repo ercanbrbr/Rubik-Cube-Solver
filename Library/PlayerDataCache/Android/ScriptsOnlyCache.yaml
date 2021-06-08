@@ -11,6 +11,7 @@ ScriptsOnlyBuild:
     - Piece
     - RotateBigCube
     - Rotations
+    - Solve
     Unity.Rider.Editor.dll:
     - Packages.Rider.Editor.UnitTesting.CallbackData
     Unity.TextMeshPro.dll:
@@ -69,20 +70,26 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11864}
     - Class: 114
-      Script: {instanceID: 12070}
+      Script: {instanceID: 12072}
     - Class: 114
-      Script: {instanceID: 12248}
+      Script: {instanceID: 12250}
     - Class: 114
-      Script: {instanceID: 12296}
+      Script: {instanceID: 12298}
     - Class: 114
-      Script: {instanceID: 12546}
+      Script: {instanceID: 12472}
     - Class: 114
-      Script: {instanceID: 12732}
+      Script: {instanceID: 12548}
     - Class: 114
-      Script: {instanceID: 12788}
+      Script: {instanceID: 12672}
     - Class: 114
-      Script: {instanceID: 13086}
+      Script: {instanceID: 12734}
+    - Class: 114
+      Script: {instanceID: 12790}
+    - Class: 114
+      Script: {instanceID: 13088}
     - Class: 115
+      Script: {instanceID: 0}
+    - Class: 128
       Script: {instanceID: 0}
     - Class: 136
       Script: {instanceID: 0}
@@ -132,23 +139,23 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11888}
     - Class: 114
-      Script: {instanceID: 12070}
+      Script: {instanceID: 12072}
     - Class: 114
-      Script: {instanceID: 12248}
+      Script: {instanceID: 12250}
     - Class: 114
-      Script: {instanceID: 12270}
+      Script: {instanceID: 12272}
     - Class: 114
-      Script: {instanceID: 12470}
+      Script: {instanceID: 12472}
     - Class: 114
-      Script: {instanceID: 12484}
+      Script: {instanceID: 12486}
     - Class: 114
-      Script: {instanceID: 12670}
+      Script: {instanceID: 12672}
     - Class: 114
-      Script: {instanceID: 12732}
+      Script: {instanceID: 12734}
     - Class: 114
-      Script: {instanceID: 12884}
+      Script: {instanceID: 12886}
     - Class: 114
-      Script: {instanceID: 13086}
+      Script: {instanceID: 13088}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -201,27 +208,29 @@ ScriptsOnlyBuild:
     - Class: 114
       Script: {instanceID: 11864}
     - Class: 114
-      Script: {instanceID: 12070}
+      Script: {instanceID: 11952}
     - Class: 114
-      Script: {instanceID: 12142}
+      Script: {instanceID: 12072}
     - Class: 114
-      Script: {instanceID: 12200}
+      Script: {instanceID: 12144}
     - Class: 114
-      Script: {instanceID: 12248}
+      Script: {instanceID: 12202}
     - Class: 114
-      Script: {instanceID: 12470}
+      Script: {instanceID: 12250}
     - Class: 114
-      Script: {instanceID: 12670}
+      Script: {instanceID: 12472}
     - Class: 114
-      Script: {instanceID: 12732}
+      Script: {instanceID: 12672}
     - Class: 114
-      Script: {instanceID: 13004}
+      Script: {instanceID: 12734}
     - Class: 114
-      Script: {instanceID: 13086}
+      Script: {instanceID: 13006}
     - Class: 114
       Script: {instanceID: 13088}
     - Class: 114
-      Script: {instanceID: 13116}
+      Script: {instanceID: 13090}
+    - Class: 114
+      Script: {instanceID: 13118}
     - Class: 115
       Script: {instanceID: 0}
     - Class: 128
@@ -445,6 +454,12 @@ ScriptsOnlyBuild:
     className: Selectable
   - hash:
       serializedVersion: 2
+      Hash: 71bb6a6b6c8f052f948db64c7dd3ca4f
+    assemblyName: Assembly-CSharp.dll
+    namespaceName: 
+    className: Solve
+  - hash:
+      serializedVersion: 2
       Hash: b3ab2106268377ffe25dd18ac23dca28
     assemblyName: Unity.TextMeshPro.dll
     namespaceName: TMPro
@@ -475,7 +490,7 @@ ScriptsOnlyBuild:
     className: TMP_SpriteAnimator
   - hash:
       serializedVersion: 2
-      Hash: 5740c2782f479281c452fa1519017343
+      Hash: b14e9c0f1fc3f9d99d288b401e44c404
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Game2
@@ -601,7 +616,7 @@ ScriptsOnlyBuild:
     className: BeforeAfterTestCommandState
   - hash:
       serializedVersion: 2
-      Hash: acb0cbae8b0345df0c1df240e68f6bad
+      Hash: 0e8b1e5bfc706c4f672d1be921dd33ed
     assemblyName: Assembly-CSharp.dll
     namespaceName: 
     className: Game

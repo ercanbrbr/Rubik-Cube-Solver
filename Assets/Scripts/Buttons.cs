@@ -23,6 +23,11 @@ public class Buttons : MonoBehaviour
     }
     public void ReturnToMainMenu()
     {
+        try
+        {
+            Destroy(GameObject.Find("GameController"));
+        }
+        catch{}
         SceneManager.LoadScene("MainMenu");
     }
     public void closeGame()
