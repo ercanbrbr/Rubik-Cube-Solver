@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using TMPro;
 
 public class Game : MonoBehaviour
 {
@@ -12,6 +13,9 @@ public class Game : MonoBehaviour
     public char[,] red = new char[,] { { 'W', 'W', 'W' }, { 'W', 'R', 'W' }, { 'W', 'W', 'W' } };
     public char[,] green = new char[,] { { 'W', 'W', 'W' }, { 'W', 'G', 'W' }, { 'W', 'W', 'W' } };
     public char[,] orange = new char[,] { { 'W', 'W', 'W' }, { 'W', 'O', 'W' }, { 'W', 'W', 'W' } };
+
+    [SerializeField]
+    GameObject dialog;
 
     
     void Awake()
@@ -24,22 +28,30 @@ public class Game : MonoBehaviour
     {
         if (false == calculatePieces())
         {
-            Debug.Log("Çözülemez Küp..: Her renkten 9 tane olmak zorunda.");
+            Debug.Log("Çözülemez Küp..: Her renkten 9 tane olmak zorunda."); 
+            Instantiate(dialog, new Vector3(0, 0, 0), Quaternion.identity);
+            GameObject.Find("ErrorText").transform.GetComponent<TMPro.TextMeshProUGUI>().text = "Çözülemez Küp \nHer renkten 9 tane olmak zorunda.";
             return false;
         }
         if (false == incorrectCorner())
         {
             Debug.Log("Çözülemez Küp..: Köşe parçalarının renkleri yanlış.");
+            Instantiate(dialog, new Vector3(0, 0, 0), Quaternion.identity);
+            GameObject.Find("ErrorText").transform.GetComponent<TMPro.TextMeshProUGUI>().text = "Çözülemez Küp\nKöşe parçalarının renkleri yanlış.";
             return false;
         }
         if (false == cornerTwist())
         {
             Debug.Log("Çözülemez Küp..: Köşe parçalarının oryantasyonu yanlış.");
+            Instantiate(dialog, new Vector3(0, 0, 0), Quaternion.identity);
+            GameObject.Find("ErrorText").transform.GetComponent<TMPro.TextMeshProUGUI>().text = "Çözülemez Küp\nKöşe parçalarının oryantasyonu yanlış.";
             return false;
         }
         if (false == isEdgesCorrect())
         {
             Debug.Log("Çözülemez Küp..: Kenar parçalarının oryantasyonu yanlış.");
+            Instantiate(dialog, new Vector3(0, 0, 0), Quaternion.identity);
+            GameObject.Find("ErrorText").transform.GetComponent<TMPro.TextMeshProUGUI>().text = "Çözülemez Küp\nKenar parçalarının oryantasyonu yanlış.";
             return false;
         }
         Debug.Log("Küp Doğrudur.");

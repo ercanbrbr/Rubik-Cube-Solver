@@ -57,7 +57,7 @@ public class Game2 : MonoBehaviour
     public void text()
     {
         moveCount++;
-        GameObject.Find("Move").transform.GetComponent<TMPro.TextMeshProUGUI>().text = "Move..:"+ moveCount;
+        GameObject.Find("Move").transform.GetComponent<TMPro.TextMeshProUGUI>().text = ""+moveCount;
         GameObject.Find("Moves").transform.GetComponent<TMPro.TextMeshProUGUI>().text = moveList;
     }
     void Start()

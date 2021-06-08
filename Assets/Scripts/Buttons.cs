@@ -122,4 +122,8 @@ public class Buttons : MonoBehaviour
         GameObject.Find("Cube").GetComponent<Solve>().whiteCross();
         //Destroy(GameObject.Find("Solve"));
     }
+    public void closeDialog()
+    {
+        Destroy(GameObject.Find("Dialog(Clone)"));
+    }
 }
