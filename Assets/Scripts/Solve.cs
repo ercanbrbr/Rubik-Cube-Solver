@@ -583,7 +583,8 @@ public class Solve : MonoBehaviour
         while (cube.GetComponent<Game2>().check(cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Up)) == false && check == true) //All Yellow
         {
             //Overlapping Squares
-            if (control(new int[] { 1, 2, 3, 4, 5, 6, 7 }, cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Up), cube.GetComponent<Game2>().Up) || control(new int[] { 0, 1, 3, 4, 5, 7, 8 }, cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Up), cube.GetComponent<Game2>().Up)) 
+            if (control(new int[] { 1, 2, 3, 4, 5, 6, 7 }, cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Up), cube.GetComponent<Game2>().Up) || 
+                control(new int[] { 0, 1, 3, 4, 5, 7, 8 }, cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Up), cube.GetComponent<Game2>().Up)) 
             {
                 rightSune();
             }
@@ -596,23 +597,16 @@ public class Solve : MonoBehaviour
             else if (control(new int[] { 1, 2, 3, 4, 5, 7, 8 }, cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Up), cube.GetComponent<Game2>().Up))
             {
                 StartCoroutine(rswipe(4));
-                //GameObject.Find("Cube").GetComponent<RotateBigCube>().doLeftSwipe();
-                //rightSune();
             }
             //Sign Right
             else if (control(new int[] { 0, 1, 3, 4, 5, 6, 7 }, cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Up), cube.GetComponent<Game2>().Up))
             {
                 StartCoroutine(lswipe(4));
-                //GameObject.Find("Cube").GetComponent<RotateBigCube>().doRightSwipe();
-                //rightSune();
             }
             //Sign Top
             else if (control(new int[] { 1, 3, 4, 5, 6, 7, 8 }, cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Up), cube.GetComponent<Game2>().Up))
             {
                 StartCoroutine(lswipe(4));
-                //GameObject.Find("Cube").GetComponent<RotateBigCube>().doLeftSwipe();
-                //GameObject.Find("Cube").GetComponent<RotateBigCube>().doLeftSwipe();
-                //rightSune();
             }
             //Fish Corrent
             else if (control(new int[] { 1, 3, 4, 5, 6, 7 }, cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Up), cube.GetComponent<Game2>().Up))
@@ -628,29 +622,16 @@ public class Solve : MonoBehaviour
             else if (control(new int[] { 1, 3, 4, 5, 7, 8 }, cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Up), cube.GetComponent<Game2>().Up))
             {
                 StartCoroutine(lswipe(4));
-                //GameObject.Find("Cube").GetComponent<RotateBigCube>().doLeftSwipe();
-                /*if (cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Front)[0, 2] == cube.GetComponent<Game2>().Up)
-                    rightSune();
-                StartCoroutine(lSune());*/
             }
             //Fish Top Left
             else if (control(new int[] { 0, 1, 3, 4, 5, 7 }, cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Up), cube.GetComponent<Game2>().Up))
             {
                 StartCoroutine(rswipe(4));
-                /*GameObject.Find("Cube").GetComponent<RotateBigCube>().doRightSwipe();
-                if (cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Front)[0, 2] == cube.GetComponent<Game2>().Up)
-                    rightSune();
-                StartCoroutine(lSune());*/
             }
             //Fish Top Right
             else if (control(new int[] { 1, 2, 3, 4, 5, 7 }, cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Up), cube.GetComponent<Game2>().Up))
             {
                 StartCoroutine(lswipe(4));
-                /*GameObject.Find("Cube").GetComponent<RotateBigCube>().doRightSwipe();
-                GameObject.Find("Cube").GetComponent<RotateBigCube>().doRightSwipe();
-                if (cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Front)[0, 2] == cube.GetComponent<Game2>().Up)
-                    rightSune();
-                StartCoroutine(lSune());*/
             }
             //Cross
             else if (control(new int[] { 1, 3, 4, 5, 7 }, cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Up), cube.GetComponent<Game2>().Up))
@@ -660,7 +641,6 @@ public class Solve : MonoBehaviour
                     rightSune();
                 }
                 StartCoroutine(lswipe(4));
-                //GameObject.Find("Cube").GetComponent<RotateBigCube>().doLeftSwipe();
             }
             //Hook Top Left
             else if (control(new int[] { 1, 3, 4 }, cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Up), cube.GetComponent<Game2>().Up))
@@ -671,23 +651,16 @@ public class Solve : MonoBehaviour
             else if (control(new int[] { 1, 4, 5 }, cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Up), cube.GetComponent<Game2>().Up))
             {
                 StartCoroutine(rswipe(4));
-                //GameObject.Find("Cube").GetComponent<RotateBigCube>().doRightSwipe();
-                //hook();
             }
             //Hook Bot Left
             else if (control(new int[] { 3, 4, 7 }, cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Up), cube.GetComponent<Game2>().Up))
             {
                 StartCoroutine(lswipe(4));
-                //GameObject.Find("Cube").GetComponent<RotateBigCube>().doLeftSwipe();
-                //hook();
             }
             //Hook Bot Right
             else if (control(new int[] { 4, 6, 7 }, cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Up), cube.GetComponent<Game2>().Up))
             {
                 StartCoroutine(lswipe(4));
-                //GameObject.Find("Cube").GetComponent<RotateBigCube>().doLeftSwipe();
-                //GameObject.Find("Cube").GetComponent<RotateBigCube>().doLeftSwipe();
-                //hook();
             }
             //Bar Horizontal
             else if (control(new int[] { 3, 4, 5 }, cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Up), cube.GetComponent<Game2>().Up))
@@ -698,8 +671,6 @@ public class Solve : MonoBehaviour
             else if (control(new int[] { 1, 4, 7 }, cube.GetComponent<Game2>().Side(cube.GetComponent<Game2>().Up), cube.GetComponent<Game2>().Up))
             {
                 StartCoroutine(lswipe(4));
-                //GameObject.Find("Cube").GetComponent<RotateBigCube>().doLeftSwipe();
-                //bar();
             }
             //Lonely Square
             else
